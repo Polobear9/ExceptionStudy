@@ -23,21 +23,32 @@ public class Error {
         //System.out.println("3 + 5" + 3 + 5); --> Output : 3 + 535;
         List<Character> text = new ArrayList<>();
 
+        FileReader fileReader = null;
         try {
-            FileReader fileReader = new FileReader("" + "C:\\test.txt");
-            while(true){
+            fileReader = new FileReader("" + "C:\\test.txt");
+            while (true) {
                 int t = fileReader.read();
-                if(t == -1){
+                if (t == -1) {
+                    text.add((char) t);
                     break;
-                }else{
-                System.out.print((char)t);
+                } else {
+                    System.out.print((char) t);
                 }
             }
+            System.out.println(text);
 
         } catch (FileNotFoundException e) {
             e.getMessage();
         } catch (IOException e) {
             e.getMessage();
+        } finally {
+            try {
+                if (fileReader != null) {
+                    fileReader.close();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
