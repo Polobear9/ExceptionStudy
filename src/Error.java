@@ -54,21 +54,21 @@ public class Error {
         try {
             BufferedReader br = new BufferedReader(new FileReader("C:\\test.txt"));
             try {
-                while(true){
+                while (true) {
                     int a = br.read();
-                    if(a == -1){
-
+                    if (a == -1) {
                         break;
-                    }else{
+                    } else {
                         System.out.println(a);
                     }
-
                 }
-            } catch (IOException e) {
+            } catch (IOException e) { //--> catch it can be skip.
                 throw new RuntimeException(e);
             }
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) { //--> catch it can be skip.
             throw new RuntimeException(e);
+        }finally{
+            System.out.println("method is finish.");
         }
     }
 }
