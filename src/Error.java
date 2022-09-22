@@ -1,7 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +17,12 @@ public class Error {
         //this exception is meaning can not access to the Array.
 
         //LogicError
-        //System.out.println("3 + 5" + 3 + 5); --> Output : 3 + 535;
+        //System.out.println("3 + 5=" + 3 + 5); --> Output : 3 + 5=35;
+        //System.out.println("3 + 5" + (3 + 5)); --> is better than Up code. --> Output: 3+5=8;
+
         List<Character> text = new ArrayList<>();
 
+        //if exception is thrown then we should write the try and catch block.
         FileReader fileReader = null;
         try {
             fileReader = new FileReader("" + "C:\\test.txt");
@@ -49,6 +49,26 @@ public class Error {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("C:\\test.txt"));
+            try {
+                while(true){
+                    int a = br.read();
+                    if(a == -1){
+
+                        break;
+                    }else{
+                        System.out.println(a);
+                    }
+
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }
